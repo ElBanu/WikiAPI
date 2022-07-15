@@ -1,11 +1,11 @@
-
+require('dotenv').config()
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require("lodash");
 const mongoose = require("mongoose");
 
-const uriAtlas = "mongodb+srv://admin:admin@cluster0.vbbdz.mongodb.net/?retryWrites=true&w=majority";
+const uriAtlas = "mongodb+srv://"+process.env.DB_USER+":"+process.env.DB_PASSWORD+"@cluster0.vbbdz.mongodb.net/?retryWrites=true&w=majority";					
 
 const app = express();
 
@@ -21,12 +21,12 @@ mongoose.connect(uriAtlas, {
 const articlesSchema = {
     title: {
       type: String,
-      required: [true, 'missing blog post title']
+      required: [true, 'missing article title']
     },
    
     content: {
       type: String,
-      required: [true, 'missing blog post content']
+      required: [true, 'missing article content']
     }
   };
   
